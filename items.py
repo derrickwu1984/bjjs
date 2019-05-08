@@ -10,6 +10,8 @@ import scrapy
 
 class BjjsItem(scrapy.Item):
     # define the fields for your item here like:
+    cert_status = scrapy.Field()
+    cert_medium = scrapy.Field()
     cert_no = scrapy.Field()
     corp_name = scrapy.Field()
     corp_repr = scrapy.Field()
