@@ -16,8 +16,13 @@ def read_excel():
         fuc_desc = sheet.row_values(2)[1]
         input_start_index = ''
         input_end_index = ''
+        cell_content = str(sheet.row(3)[0])
+        if (cell_content=="empty:''"):
+            start_index = 6
+        else:
+            start_index = 5
         # 第一次循环定位输入、输出的index
-        for row  in range(sheet.nrows)[6:]:
+        for row  in range(sheet.nrows)[start_index:]:
             sheet_row_values = sheet.row_values(row)
             if (sheet_row_values[0]=='输入'):
                 input_start_index=row
@@ -25,7 +30,7 @@ def read_excel():
                 input_end_index = row
         # 第二次循环，确认每条记录是输入项还是输出项
         #temp结果集中已经过滤掉输入、输出
-        for row in range(sheet.nrows)[6:]:
+        for row in range(sheet.nrows)[start_index:]:
             sheet_row_values = sheet.row_values(row)
             if (sheet_row_values[0] != '输入' and sheet_row_values[0] != '输出' and row > int(input_start_index) and row < int(input_end_index)):
                 sheet_row_values.append('in')
